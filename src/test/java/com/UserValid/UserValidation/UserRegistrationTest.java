@@ -69,8 +69,8 @@ public class UserRegistrationTest{
     @Test
    public void givenFirstName_WhenFirstLetterCapsAndLengthGreaterThan3_ShouldReturn_True() {
         try {
-            if(!user.validateFirstName(firstName))
-                throw new UserRegistrationException("Invalid first name: "+firstName);
+            if(!user.validateLastName.validate(lastName))
+                throw new UserRegistrationException("Invalid last name: "+lastName);
         }catch(UserRegistrationException e){
             System.err.println("Exception " + e.getMessage());
         }
@@ -79,41 +79,41 @@ public class UserRegistrationTest{
     @Test
     public void givenLastName_WhenFirstLetterCapsAndLengthGreaterThan3_ShouldReturn_True() {
         try {
-            if(!user.validateLastName(lastName))
-                throw new UserRegistrationException("Invalid last name: "+lastName);
+            if(!user.validateFirstName.validate(firstName))
+                throw new UserRegistrationException("Invalid first name: "+firstName);
         }catch(UserRegistrationException e){
-            System.err.println("Exception " + e.getMessage());
+            System.err.println("Exception: " + e.getMessage());
         }
     }
 
     @Test
     public void givenEmail_WhenLettersAndSpecialCharactersFollowedbyATSymbolAndDomainName_ShouldReturn_True() {
         try {
-            if(!user.validateEmail(email))
+            if(this.expected != user.validateEmail.validate(email))
                 throw new UserRegistrationException("Invalid email: "+email);
         }catch(UserRegistrationException e){
-            System.err.println("Exception " + e.getMessage());
+            System.err.println("Exception:" + e.getMessage());
         }
     }
 
     @Test
     public void givenPhone_WhenStartsWith91AndLength10_ShouldReturn_True() {
         try {
-            if(!user.validatePhone(mobile))
-                throw new UserRegistrationException("Invalid phone: "+mobile);
+            if(!user.validateMobile.validate(mobile))
+                throw new UserRegistrationException("Invalid phone number: "+mobile);
         }catch(UserRegistrationException e){
-            System.err.println("Exception " + e.getMessage());
+            System.err.println("Exception: " + e.getMessage());
         }
     }
 
     @Test
     public void givenPassword_WhenLengthGreaterThan8FirstLetterCaps1Number1SpecialChar_ShouldReturn_True() {
         try {
-        if(!user.validatePassword(password))
-            throw new UserRegistrationException("Invalid password: "+password);
-    }catch(UserRegistrationException e){
-        System.err.println("Exception " + e.getMessage());
-    }
+            if(!user.validatePassword.validate(password))
+                throw new UserRegistrationException("Invalid password: "+password);
+        }catch(UserRegistrationException e){
+            System.err.println("Exception " + e.getMessage());
+        }
     }
 
 }
